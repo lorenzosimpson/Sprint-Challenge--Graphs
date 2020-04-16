@@ -13,9 +13,9 @@ world = World()
 # You may uncomment the smaller graphs for development and testing purposes.
 #map_file = "maps/test_line.txt"
 #map_file = "maps/test_cross.txt"
-#map_file = "maps/test_loop.txt"
+map_file = "maps/test_loop.txt"
 #map_file = "maps/test_loop_fork.txt"
-map_file = "maps/main_maze.txt"
+#map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph=literal_eval(open(map_file, "r").read())
@@ -45,8 +45,6 @@ def dft_recursive(starting_vertex): # make a path of the rooms to visit in order
                 dft_recursive(r)
                 room_list.append(starting_vertex)
 
-
-
 def convert_to_directions():
     for i in range(len(room_list) - 1): # loop through the list of rooms that are traveled in order 
         for k, val in room_graph[room_list[i]][1].items(): # look at the available exits
@@ -54,10 +52,12 @@ def convert_to_directions():
                 traversal_path.append(k) # append that direction
             
 
-
-
 dft_recursive(world.starting_room.id)
 convert_to_directions()
+
+print(room_list)
+print('')
+print(traversal_path)
 
 
 
